@@ -10,6 +10,7 @@ function App() {
       <Col span={8} offset={8}>
         <Searcher />
       </Col>
+      
       <PokemonList />
     </div>
   )

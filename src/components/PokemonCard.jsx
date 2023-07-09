@@ -1,5 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
 import { Card } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import { StarOutlined } from '@ant-design/icons';
