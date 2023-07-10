@@ -1,10 +1,17 @@
+import React from 'react';
 import './App.css'
 import { Searcher } from './components/Searcher';
 import { PokemonList } from './components/PokemonList';
 import { Col } from 'antd';
 import { ReactComponent as Logo } from './statics/logo.svg';
+import { usePokeAPI } from './usePokeAPI';
 
 function App() {
+  const { pokemons } = usePokeAPI();
+
+  React.useEffect(() => {
+    console.log(pokemons);
+  }, [pokemons]);
 
   return (
     <div className="app">
@@ -16,7 +23,7 @@ function App() {
         <Searcher />
       </Col>
       
-      <PokemonList />
+      <PokemonList pokemons={pokemons} />
     </div>
   )
 }

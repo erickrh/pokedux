@@ -25,5 +25,6 @@ module.exports = {
       'single',
       { 'allowTemplateLiterals': true }
     ],
+    'react-hooks/exhaustive-deps': 0,
   },
 }
