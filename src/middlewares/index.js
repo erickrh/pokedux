@@ -5,7 +5,7 @@ const logger = store => next => action => {
 };
 
 const featuring  = store => next => actionInfo => {
-  const featured = [{ name: 'Lugia'}, ...actionInfo.action.payload];
+  const featured = [{ name: 'Lugia', url: 'https://pokeapi.co/api/v2/pokemon/249'}, ...actionInfo.action.payload];
   const updatedActionInfo = {
     ...actionInfo,
     action: { ...actionInfo.action, payload: featured },
@@ -13,4 +13,26 @@ const featuring  = store => next => actionInfo => {
   next(updatedActionInfo);
 }
 
-export { logger, featuring };
+const counterCapitalize = store => next => actionInfo => {
+  const originalPayload = [...actionInfo.action.payload];
+  
+  // Capitalice function
+  const capitalizeWord = word => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }
+
+  const pokemonsWithIndex = originalPayload.map((pokemon, index) => {
+    return {
+      name: `${index + 1}. ` + capitalizeWord(pokemon.name),
+      url: pokemon.url,
+    };
+  });
+
+  const updatedActionInfo = {
+    ...actionInfo,
+    action: { ...actionInfo.action, payload: pokemonsWithIndex },
+  };
+  next(updatedActionInfo)
+}
+
+export { logger, featuring, counterCapitalize };
