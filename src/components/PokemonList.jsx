@@ -1,26 +1,17 @@
-import './PokemonList.css';
-import PropTypes from 'prop-types';
 import { PokemonCard } from './PokemonCard';
 
-function PokemonList({ pokemons }) {
+const PokemonList = ({ pokemons }) => {
   return (
-    <div className="PokemonList">
+    <div className='PokemonList'>
       {pokemons.map(pokemon => (
-        <PokemonCard
-          key={pokemon.name}
-          name={pokemon.name}
-        />
+        <PokemonCard name={pokemon.name} key={pokemon.name} />
       ))}
     </div>
   );
-}
-
-PokemonList.propTypes = {
-  pokemons: PropTypes.array.isRequired,
 };
 
 PokemonList.defaultProps = {
   pokemons: Array(10).fill(''),
-}
+};
 
 export { PokemonList };

@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 
 function usePokeAPI() {
@@ -6,17 +5,12 @@ function usePokeAPI() {
     baseURL: 'https://pokeapi.co/api/v2/',
   });
 
-  const [pokemons, setPokemons] = React.useState([]);
+  const getPokemon = async () => {
+    const { data } = await api('pokemon?limit=151');
+    return data.results;
+  };
 
-  React.useEffect(() => {
-    const getPokemon = async () => {
-      const { data } = await api('pokemon?limit=151');
-      setPokemons(data.results);
-    };
-    getPokemon();
-  }, []);
-
-  return { pokemons };
+  return { getPokemon };
 }
 
 export { usePokeAPI };
