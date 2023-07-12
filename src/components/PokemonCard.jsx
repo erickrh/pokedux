@@ -3,19 +3,29 @@ import { Card } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import './PokemonList.css';
 
-const PokemonCard = ({ name }) => {
+const PokemonCard = ({ name, image, types }) => {
+
+  // Capitalice function
+  const capitalizeWord = word => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }
+
+  const typesPokemon = types.map(type => type.type.name);
+  const uppercaseTypes = typesPokemon.map(type => capitalizeWord(type));
+  const allTypes = uppercaseTypes.join(', ');
+
   return (
     <Card
       title={name}
       cover={
         <img
-          src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png'
-          alt='Ditto'
+          src={image}
+          alt={name}
         />
       }
       extra={<StarOutlined />}
     >
-      <Meta description='Normal, magic' />
+      <Meta description={allTypes} />
     </Card>
   );
 };
