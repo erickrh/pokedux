@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const logger = store => next => action => {
-  console.log(action);
+  // console.log(action);
   next(action)
 };
 
@@ -39,26 +39,30 @@ const featuring  = store => next => actionInfo => {
 } */
 
 const counterCapitalize = store => next => actionInfo => {
-  const originalPayload = [...actionInfo.payload];
+  if (Array.isArray(actionInfo.payload)) {
+    const originalPayload = [...actionInfo.payload];
   
-  // Capitalice function
-  const capitalizeWord = word => {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  }
-
-  const pokemonsWithIndex = originalPayload.map((pokemon, index) => {
-    return {
-      ...pokemon,
-      name: `${index + 1}. ` + capitalizeWord(pokemon.name),
+    // Capitalice function
+    const capitalizeWord = word => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }
+  
+    const pokemonsWithIndex = originalPayload.map((pokemon, index) => {
+      return {
+        ...pokemon,
+        name: `${index + 1}. ` + capitalizeWord(pokemon.name),
+      };
+    });
+  
+    const updatedActionInfo = {
+      ...actionInfo,
+      payload: pokemonsWithIndex,
     };
-  });
-
-  const updatedActionInfo = {
-    ...actionInfo,
-    payload: pokemonsWithIndex,
-  };
   
-  next(updatedActionInfo)
-}
+    next(updatedActionInfo);
+  } else {
+    next(actionInfo);
+  }
+};
 
 export { logger, featuring, counterCapitalize };

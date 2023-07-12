@@ -2,6 +2,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  margin: 3rem;
-  padding: 0 3rem 3rem ;
+  margin: 5rem 0rem;
+  padding: 0 3rem 3rem;
 }

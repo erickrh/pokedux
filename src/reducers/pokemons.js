@@ -1,7 +1,8 @@
-import { SET_POKEMONS } from '../actions/types';
+import { SET_POKEMONS, SET_LOADING } from '../actions/types';
 
 const initialState = {
   pokemons: [],
+  loading: false,
 };
 
 const pokemonsReducer = (state = initialState, action) => {
@@ -9,7 +10,12 @@ const pokemonsReducer = (state = initialState, action) => {
   case SET_POKEMONS:
     return {
       ...state,
-      pokemons: action.payload
+      pokemons: action.payload,
+    };
+  case SET_LOADING:
+    return {
+      ...state,
+      loading: action.payload,
     };
   default:
     return {...state};

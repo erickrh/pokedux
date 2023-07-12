@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col } from 'antd';
+import { Col, Row, Spin } from 'antd';
 import { Searcher } from './components/Searcher';
 import { PokemonList } from './components/PokemonList';
 import { usePokeAPI } from './usePokeAPI';
@@ -11,15 +11,18 @@ import './App.css';
 function App() {
   const { getPokemon } = usePokeAPI();
 
-  const { getPokemonsWithDetails } = Actions();
+  const { setLoading, getPokemonsWithDetails } = Actions();
 
   const dispatch = useDispatch();
   const pokemons = useSelector(state => state.pokemons);
+  const loading = useSelector(state => state.loading);
   
   React.useEffect(() => {
     const fetchPokemons = async () => {
+      dispatch(setLoading(true));
       const pokemonsRes = await getPokemon();
       dispatch(getPokemonsWithDetails(pokemonsRes));
+      dispatch(setLoading(false));
     };
 
     fetchPokemons();
@@ -33,7 +36,18 @@ function App() {
       <Col span={8} offset={8}>
         <Searcher />
       </Col>
-      <PokemonList pokemons={pokemons} />
+
+      {loading ? (
+        <Row justify="center" align="middle" style={{ height: '50vh' }}>
+          <Col>
+            <Spin spinning size='large'/>
+          </Col>
+        </Row>
+      ) : (
+        <PokemonList pokemons={pokemons} />
+      )}
+      
+      
     </div>
   );
 }
