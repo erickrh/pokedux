@@ -10,9 +10,9 @@ const PokemonCard = ({ name, image, types }) => {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }
 
-  const typesPokemon = types.map(type => type.type.name);
-  const uppercaseTypes = typesPokemon.map(type => capitalizeWord(type));
-  const allTypes = uppercaseTypes.join(', ');
+  const arrayPokemonTypes = types.map(type => type.type.name);
+  const uppercaseTypes = arrayPokemonTypes.map(type => capitalizeWord(type));
+  const pokemonTypes = uppercaseTypes.join(', ');
 
   return (
     <Card
@@ -25,7 +25,7 @@ const PokemonCard = ({ name, image, types }) => {
       }
       extra={<StarOutlined />}
     >
-      <Meta description={allTypes} />
+      <Meta description={pokemonTypes} />
     </Card>
   );
 };
