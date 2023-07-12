@@ -10,7 +10,12 @@ function usePokeAPI() {
     return data.results;
   };
 
-  return { getPokemon };
+  const getPokemonDetails = async pokemon => {
+    const { data } = await api(pokemon.url);
+    return data;
+  }
+
+  return { getPokemon, getPokemonDetails };
 }
 
 export { usePokeAPI };

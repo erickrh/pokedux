@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 
 function App() {
-  const { getPokemon } = usePokeAPI();
+  const { getPokemon, getPokemonDetails } = usePokeAPI();
 
   const dispatch = useDispatch();
   const pokemons = useSelector(state => state.pokemons);
@@ -18,7 +18,10 @@ function App() {
   React.useEffect(() => {
     const fetchPokemons = async () => {
       const pokemonsRes = await getPokemon();
-      dispatch(setPokemons(pokemonsRes));
+      const pokemonsDetail = await Promise.all(pokemonsRes.map(pokemon => (
+        getPokemonDetails(pokemon)
+      )));
+      dispatch(setPokemons(pokemonsDetail));
     };
 
     fetchPokemons();

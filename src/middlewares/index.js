@@ -23,6 +23,7 @@ const counterCapitalize = store => next => actionInfo => {
 
   const pokemonsWithIndex = originalPayload.map((pokemon, index) => {
     return {
+      ...pokemon,
       name: `${index + 1}. ` + capitalizeWord(pokemon.name),
       url: pokemon.url,
     };
