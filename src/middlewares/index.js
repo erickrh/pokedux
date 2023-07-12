@@ -13,10 +13,11 @@ const featuring  = store => next => actionInfo => {
   next(updatedActionInfo);
 }
 
-const counterCapitalize = store => next => actionInfo => {
+/* const counterCapitalize = store => next => actionInfo => {
   const originalPayload = [...actionInfo.action.payload];
+
   
-  // Capitalice function
+  // // Capitalice function
   const capitalizeWord = word => {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }
@@ -33,6 +34,30 @@ const counterCapitalize = store => next => actionInfo => {
     ...actionInfo,
     action: { ...actionInfo.action, payload: pokemonsWithIndex },
   };
+  console.log(updatedActionInfo);
+  next(actionInfo)
+} */
+
+const counterCapitalize = store => next => actionInfo => {
+  const originalPayload = [...actionInfo.payload];
+  
+  // Capitalice function
+  const capitalizeWord = word => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }
+
+  const pokemonsWithIndex = originalPayload.map((pokemon, index) => {
+    return {
+      ...pokemon,
+      name: `${index + 1}. ` + capitalizeWord(pokemon.name),
+    };
+  });
+
+  const updatedActionInfo = {
+    ...actionInfo,
+    payload: pokemonsWithIndex,
+  };
+  
   next(updatedActionInfo)
 }
 
