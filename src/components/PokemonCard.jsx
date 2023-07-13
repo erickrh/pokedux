@@ -10,6 +10,7 @@ const PokemonCard = ({ name, image, types }) => {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }
 
+  // Show pokemons type.
   const arrayPokemonTypes = types.map(type => type.type.name);
   const uppercaseTypes = arrayPokemonTypes.map(type => capitalizeWord(type));
   const pokemonTypes = uppercaseTypes.join(', ');
