@@ -1,5 +1,5 @@
 import { usePokeAPI } from '../usePokeAPI';
-import { SET_POKEMONS, SET_LOADING } from './types';
+import { SET_POKEMONS, SET_LOADING, SET_FAVORITE } from './types';
 
 function Actions() {
   const { getPokemonDetails } = usePokeAPI();
@@ -23,10 +23,16 @@ function Actions() {
         dispatch(setPokemons(pokemonsDetail));
       };
 
+  const setFavorite = payload => ({
+    type: SET_FAVORITE,
+    payload,
+  })
+
   return {
     setPokemons,
     setLoading,
     getPokemonsWithDetails,
+    setFavorite,
   }
 }
 

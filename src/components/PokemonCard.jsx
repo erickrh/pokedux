@@ -1,9 +1,13 @@
-import { StarOutlined } from '@ant-design/icons';
+import { Actions } from '../actions';
+import { useDispatch } from 'react-redux';
 import { Card } from 'antd';
 import Meta from 'antd/lib/card/Meta';
+import { StarButton } from './StarButton';
 import './PokemonList.css';
 
-const PokemonCard = ({ name, image, types }) => {
+const PokemonCard = ({ name, image, types , id, favorite }) => {
+  const { setFavorite } = Actions();
+  const dispatch = useDispatch();
 
   // Capitalice function
   const capitalizeWord = word => {
@@ -15,6 +19,10 @@ const PokemonCard = ({ name, image, types }) => {
   const uppercaseTypes = arrayPokemonTypes.map(type => capitalizeWord(type));
   const pokemonTypes = uppercaseTypes.join(', ');
 
+  const handleOnFavorite = () => {
+    dispatch(setFavorite({pokemonId: id}));
+  };
+
   return (
     <Card
       title={name}
@@ -24,7 +32,7 @@ const PokemonCard = ({ name, image, types }) => {
           alt={name}
         />
       }
-      extra={<StarOutlined />}
+      extra={<StarButton isFavorite={favorite} onClick={handleOnFavorite} />}
     >
       <Meta description={pokemonTypes} />
     </Card>

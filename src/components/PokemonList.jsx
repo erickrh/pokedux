@@ -9,6 +9,8 @@ const PokemonList = ({ pokemons }) => {
           name={pokemon.name}
           image={pokemon?.sprites?.other['official-artwork']?.front_default}
           types={pokemon.types}
+          id={pokemon.id}
+          favorite={pokemon.favorite}
         />
       ))}
     </div>
