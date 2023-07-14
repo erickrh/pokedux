@@ -13,6 +13,11 @@ function Actions() {
     type: SET_LOADING,
     payload,
   })
+
+  const setFavorite = payload => ({
+    type: SET_FAVORITE,
+    payload,
+  })
   
   const getPokemonsWithDetails =
     (pokemons = []) =>
@@ -22,11 +27,6 @@ function Actions() {
           ));
         dispatch(setPokemons(pokemonsDetail));
       };
-
-  const setFavorite = payload => ({
-    type: SET_FAVORITE,
-    payload,
-  })
 
   return {
     setPokemons,
