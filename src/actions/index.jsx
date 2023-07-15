@@ -36,4 +36,4 @@ function Actions() {
   }
 }
 
-export { Actions }
+export { Actions };

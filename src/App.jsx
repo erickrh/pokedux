@@ -1,11 +1,11 @@
 import React from 'react';
-import { Col, Row, Spin } from 'antd';
-import { Searcher } from './components/Searcher';
-import { PokemonList } from './components/PokemonList';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { usePokeAPI } from './usePokeAPI';
 import { Actions } from './actions';
+import { PokemonList } from './components/PokemonList';
+import { Col, Row, Spin } from 'antd';
+import { Searcher } from './components/Searcher';
 import { ReactComponent as Logo } from './assets/logo.svg';
-import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
   const { setLoading, getPokemonsWithDetails } = Actions();
 
   const dispatch = useDispatch();
-  const pokemons = useSelector(state => state.get('pokemons')).toJS();
-  const loading = useSelector(state => state.get('loading'));
+  const pokemons = useSelector(state => state.getIn(['data', 'pokemons'], shallowEqual)).toJS();
+  const loading = useSelector(state => state.getIn(['ui', 'loading']));
   
   React.useEffect(() => {
     const fetchPokemons = async () => {
