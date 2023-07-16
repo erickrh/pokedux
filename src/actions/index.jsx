@@ -1,9 +1,7 @@
-import { usePokeAPI } from '../usePokeAPI';
+import { getPokemonDetails } from '../usePokeAPI';
 import { SET_POKEMONS, SET_LOADING, SET_FAVORITE } from './types';
 
 function Actions() {
-  const { getPokemonDetails } = usePokeAPI();
-
   const setPokemons = payload => ({
     type: SET_POKEMONS,
     payload,

@@ -1,12 +1,11 @@
-import { Actions } from '../actions';
 import { useDispatch } from 'react-redux';
 import { Card } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import { StarButton } from './StarButton';
+import { setFavorite } from '../slices/dataSlice';
 import './PokemonList.css';
 
 const PokemonCard = ({ name, image, types , id, favorite }) => {
-  const { setFavorite } = Actions();
   const dispatch = useDispatch();
 
   // Capitalice function
