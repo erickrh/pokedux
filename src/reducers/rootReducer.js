@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux-immutable';
-import { pokemonsReducer } from './pokemonsReducer';
-import { uiReducer } from './uiReducer';
+import { combineReducers } from 'redux';
+import dataReducer from '../slices/dataSlice';
 
 const rootReducer = combineReducers({
-  data: pokemonsReducer,
-  ui: uiReducer,
+  data: dataReducer,
 });
 
 export { rootReducer };
