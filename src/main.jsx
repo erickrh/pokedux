@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, compose, legacy_createStore as createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { /* featuring */ logger, counterCapitalize} from './middlewares/index.jsx';
-import './index.css';
 
 const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
