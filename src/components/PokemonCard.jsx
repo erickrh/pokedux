@@ -26,6 +26,8 @@ const PokemonCard = ({ name, image, types , id, favorite }) => {
 
   return (
     <Card
+      hoverable={true}
+      size='small'
       title={name}
       cover={
         <img
