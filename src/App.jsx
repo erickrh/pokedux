@@ -18,10 +18,10 @@ function App() {
 
   return (
     <div className='App'>
-      <Col span={4} offset={10}>
+      <Col span={6} offset={9}>
         <Logo className='Logo' />
       </Col>
-      <Col span={8} offset={8}>
+      <Col span={12} offset={6}>
         <Searcher />
       </Col>
 
