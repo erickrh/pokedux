@@ -11,5 +11,11 @@ export const getPokemon = async () => {
 
 export const getPokemonDetails = async pokemon => {
   const { data } = await api(pokemon.url);
-  return data;
+  const pokemonDetails = {
+    id: data.id,
+    name: data.name,
+    image: data.sprites.other['official-artwork'].front_default,
+    types: data.types,
+  }
+  return pokemonDetails;
 };

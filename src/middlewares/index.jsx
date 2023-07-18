@@ -14,7 +14,8 @@ const featuring  = store => next => actionInfo => {
         {type: { name: 'flying' }},
       ],
     },
-    ...actionInfo.payload];
+    ...actionInfo.payload
+    ];
     const updatedActionInfo = {
       ...actionInfo,
       payload: featured,
