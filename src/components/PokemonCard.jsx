@@ -22,6 +22,8 @@ const PokemonCard = ({ name, image, types , id, favorite }) => {
     dispatch(setFavorite({pokemonId: id}));
   };
 
+  if (id === 249) image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/249.png';
+
   return (
     <Card
       title={name}

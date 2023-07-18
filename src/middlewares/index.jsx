@@ -1,16 +1,28 @@
 /* eslint-disable no-unused-vars */
 const logger = store => next => action => {
-  console.log(action);
+  // console.log(action);
   next(action)
 };
 
 const featuring  = store => next => actionInfo => {
-  const featured = [{ name: 'Lugia', url: 'https://pokeapi.co/api/v2/pokemon/249'}, ...actionInfo.action.payload];
-  const updatedActionInfo = {
-    ...actionInfo,
-    action: { ...actionInfo.action, payload: featured },
-  };
-  next(updatedActionInfo);
+  if (Array.isArray(actionInfo.payload)) {
+    const featured = [{
+      name: '0. Lugia',
+      id: 249,
+      types: [
+        {type: { name: 'psychic' }},
+        {type: { name: 'flying' }},
+      ],
+    },
+    ...actionInfo.payload];
+    const updatedActionInfo = {
+      ...actionInfo,
+      payload: featured,
+    };
+    next(updatedActionInfo);
+  } else {
+    next(actionInfo);
+  }
 }
 
 /* const counterCapitalize = store => next => actionInfo => {
