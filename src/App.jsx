@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from './assets/logo.svg';
 import { fetchPokemonsWithDetails } from './slices/dataSlice';
 import PaginatedItems from './components/PaginatedItems';
 import Pagination from './components/Pagination';
-// import { PokemonList } from './components/PokemonList';
+import { PokemonList } from './components/PokemonList';
 import './App.css';
 
 function App() {
@@ -34,17 +34,12 @@ function App() {
           </Col>
         </Row>
       ) : (
-        <>
-          <Pagination />
-          <PaginatedItems itemsPerPage={20} pokemons={pokemons} />
-        </>
-        
       // <>
-      //   <Col offset={0}>
-      //     <PaginatedItems itemsPerPage={20} pokemons={pokemons} />
-      //   </Col>
-      //   {/* <PokemonList pokemons={pokemons} /> */}
+      //   <Pagination />
+      //   <PaginatedItems itemsPerPage={20} pokemons={pokemons} />
       // </>
+        
+        <Pagination pokemons={pokemons}/>
       )}
     </div>
   );
