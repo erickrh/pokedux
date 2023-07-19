@@ -1,0 +1,15 @@
+.ulPaginate {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.liPaginate, .next, .previous {
+  cursor: pointer;
+}
+
+.liPaginate {
+  margin: 0.5em;
+}
