@@ -44,6 +44,7 @@ function App() {
 
           <Col offset={10}>
             <Pagination
+              className='pagination'
               current={currentPage}
               total={1000 || count}
               pageSize={20}
