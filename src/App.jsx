@@ -12,6 +12,7 @@ function App() {
   const pokemons = useSelector(state => state.data.pokemons, shallowEqual); // shallowEqual ayuda en las comparaciones, evita re renders.
   const loading = useSelector(state => state.ui.loading);
   const currentPage = useSelector(state => state.data.currentPage);
+  const count = useSelector(state => state.data.count);
   
   React.useEffect(() => {
     dispatch(fetchPokemonsWithDetails(currentPage));
@@ -44,7 +45,7 @@ function App() {
           <Col offset={10}>
             <Pagination
               current={currentPage}
-              total={1000}
+              total={count}
               pageSize={20}
               onChange={handlePageChange}
               size='small'

@@ -4,16 +4,18 @@ import { setLoading } from './uiSlice';
 
 const initialState = {
   pokemons: [],
+  count: 0,
   currentPage: 1,
 }
 
 export const fetchPokemonsWithDetails = createAsyncThunk(
   'data/fetchPokemonsWithDetails',
   async (page, { dispatch }) => { // dispatch destrusturado de ThunkAPI.
-    const pokemonsRes = await getPokemon(page);
     dispatch(setLoading(true));
+    const { pokemonsData, count } = await getPokemon(page);
+    dispatch(setCount(count));
     const pokemonsDetail = await Promise.all(
-      pokemonsRes.map(pokemon => getPokemonDetails(pokemon))
+      pokemonsData.map(pokemon => getPokemonDetails(pokemon))
     );
     dispatch(setPokemons(pokemonsDetail));
     dispatch(setLoading(false));
@@ -29,6 +31,9 @@ const dataSlice = createSlice({
     },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
+    },
+    setCount: (state, action) => {
+      state.count = action.payload;
     },
     setFavorite: (state, action) => {
       const currentPokemonIndex = state.pokemons.findIndex(pokemon => {
@@ -46,6 +51,7 @@ const dataSlice = createSlice({
 export const {
   setPokemons,
   setCurrentPage,
+  setCount,
   setFavorite,
 } = dataSlice.actions;
 

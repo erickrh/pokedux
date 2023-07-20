@@ -6,7 +6,11 @@ const api = axios.create({
 
 export const getPokemon = async (page) => {
   const { data } = await api(`pokemon?limit=20&offset=${(page - 1) * 20}`);
-  return data.results;
+  const pokeInfo = {
+    pokemonsData: data.results,
+    count: data.count,
+  }
+  return pokeInfo;
 };
 
 export const getPokemonDetails = async pokemon => {
