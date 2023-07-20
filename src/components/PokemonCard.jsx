@@ -22,7 +22,10 @@ const PokemonCard = ({ name, image, types , id, favorite }) => {
     dispatch(setFavorite({pokemonId: id}));
   };
 
-  if (id === 249) image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/249.png';
+  // Lugia middleware image:
+  // if (id === 249) image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/249.png';
+  
+  const noFound = 'src/assets/noFound.png';
 
   return (
     <Card
@@ -31,7 +34,7 @@ const PokemonCard = ({ name, image, types , id, favorite }) => {
       title={name}
       cover={
         <img
-          src={image}
+          src={image ?? noFound}
           alt={name}
         />
       }

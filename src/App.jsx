@@ -45,7 +45,7 @@ function App() {
           <Col offset={10}>
             <Pagination
               current={currentPage}
-              total={count}
+              total={1000 || count}
               pageSize={20}
               onChange={handlePageChange}
               size='small'
