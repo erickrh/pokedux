@@ -1,20 +1,25 @@
 import React from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { Col, Row, Spin } from 'antd';
+import { Col, Row, Spin, Pagination } from 'antd';
 import { Searcher } from './components/Searcher';
 import { ReactComponent as Logo } from './assets/logo.svg';
-import { fetchPokemonsWithDetails } from './slices/dataSlice';
-import Pagination from './components/Pagination';
+import { fetchPokemonsWithDetails, setCurrentPage } from './slices/dataSlice';
+import { PokemonList } from './components/PokemonList';
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
   const pokemons = useSelector(state => state.data.pokemons, shallowEqual); // shallowEqual ayuda en las comparaciones, evita re renders.
   const loading = useSelector(state => state.ui.loading);
-
+  const currentPage = useSelector(state => state.data.currentPage);
+  
   React.useEffect(() => {
-    dispatch(fetchPokemonsWithDetails());
-  }, []);
+    dispatch(fetchPokemonsWithDetails(currentPage));
+  }, [currentPage]);
+
+  const handlePageChange = page => {
+    dispatch(setCurrentPage(page));
+  };
 
   return (
     <div className='App'>
@@ -32,7 +37,23 @@ function App() {
           </Col>
         </Row>
       ) : (
-        <Pagination pokemons={pokemons}/>
+        <>
+          {/* Items */}
+          <PokemonList pokemons={pokemons} />
+
+          <Col offset={10}>
+            <Pagination
+              current={currentPage}
+              total={1000}
+              pageSize={20}
+              onChange={handlePageChange}
+              size='small'
+              showSizeChanger={false}
+              showLessItems
+              responsive
+            />
+          </Col>
+        </>
       )}
     </div>
   );
