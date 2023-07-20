@@ -23,3 +23,21 @@ export const getPokemonDetails = async pokemon => {
   }
   return pokemonDetails;
 };
+
+
+export const getPokemonBySearch = async pokemonName => {
+  try {
+    const { data } = await api(`pokemon/${pokemonName}`);
+    const pokemonDetails = {
+      id: data.id,
+      name: data.name,
+      image: data.sprites.other['official-artwork'].front_default,
+      types: data.types,
+    }
+    return pokemonDetails;
+  } catch (error) {
+    if(error.response && error.response.status === 404) {
+      console.clear();
+    }
+  }
+}

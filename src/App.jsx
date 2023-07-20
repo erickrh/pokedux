@@ -13,7 +13,9 @@ function App() {
   const loading = useSelector(state => state.ui.loading);
   const currentPage = useSelector(state => state.data.currentPage);
   const count = useSelector(state => state.data.count);
-  
+  const searchValue = useSelector(state => state.data.searchValue);
+  // const refreshTrigger = useSelector(state => state.data.refreshTrigger);
+
   React.useEffect(() => {
     dispatch(fetchPokemonsWithDetails(currentPage));
   }, [currentPage]);
@@ -28,7 +30,7 @@ function App() {
         <Logo className='Logo' />
       </Col>
       <Col span={12} offset={6}>
-        <Searcher />
+        <Searcher searchValue={searchValue} />
       </Col>
 
       {loading ? (

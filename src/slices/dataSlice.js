@@ -6,6 +6,8 @@ const initialState = {
   pokemons: [],
   count: 0,
   currentPage: 1,
+  searchValue: '',
+  refreshTrigger: false,
 }
 
 export const fetchPokemonsWithDetails = createAsyncThunk(
@@ -35,6 +37,12 @@ const dataSlice = createSlice({
     setCount: (state, action) => {
       state.count = action.payload;
     },
+    setSearchValue: (state, action) => {
+      state.searchValue = action.payload;
+    },
+    setRefreshTrigger: (state, action) => {
+      state.refreshTrigger = action.payload;
+    },
     setFavorite: (state, action) => {
       const currentPokemonIndex = state.pokemons.findIndex(pokemon => {
         return pokemon.id === action.payload.pokemonId;
@@ -52,6 +60,8 @@ export const {
   setPokemons,
   setCurrentPage,
   setCount,
+  setSearchValue,
+  setRefreshTrigger,
   setFavorite,
 } = dataSlice.actions;
 
