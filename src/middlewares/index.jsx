@@ -78,4 +78,31 @@ const counterCapitalize = store => next => actionInfo => {
   }
 };
 
-export { logger, featuring, counterCapitalize };
+const capitalize = store => next => actionInfo => {
+  if (Array.isArray(actionInfo.payload)) {
+    const originalPayload = [...actionInfo.payload];
+  
+    // Capitalice function
+    const capitalizeWord = word => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }
+  
+    const capitalizePokemons = originalPayload.map(pokemon => {
+      return {
+        ...pokemon,
+        name: capitalizeWord(pokemon.name),
+      };
+    });
+  
+    const updatedActionInfo = {
+      ...actionInfo,
+      payload: capitalizePokemons,
+    };
+  
+    next(updatedActionInfo);
+  } else {
+    next(actionInfo);
+  }
+};
+
+export { logger, featuring, counterCapitalize, capitalize };
