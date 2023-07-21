@@ -36,7 +36,7 @@ export const getPokemonBySearch = async pokemonName => {
     }
     return pokemonDetails;
   } catch (error) {
-    if(error.response && error.response.status === 404) {
+    if (error.response && error.response.status === 404) {
       console.clear();
     }
   }
