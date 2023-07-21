@@ -4,6 +4,7 @@
 
 .Logo {
   margin-bottom: 3rem;
+  cursor: pointer;
 }
 
 .pagination {

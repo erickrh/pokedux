@@ -4,6 +4,7 @@ import { Col, Row, Spin, Pagination } from 'antd';
 import { Searcher } from './components/Searcher';
 import { ReactComponent as Logo } from './assets/logo.svg';
 import { fetchPokemonsWithDetails, setCurrentPage } from './slices/dataSlice';
+import { setOnSearching } from './slices/uiSlice';
 import { PokemonList } from './components/PokemonList';
 import './App.css';
 
@@ -28,7 +29,14 @@ function App() {
   return (
     <div className='App'>
       <Col span={6} offset={9}>
-        <Logo className='Logo' />
+        <Logo
+          className='Logo'
+          onClick={() => {
+            dispatch(setCurrentPage(1));
+            dispatch(setOnSearching(false));
+            dispatch(fetchPokemonsWithDetails(1));
+          }}
+        />
       </Col>
       <Col span={12} offset={6}>
         <Searcher
@@ -51,6 +59,7 @@ function App() {
 
           <Col offset={10}>
             <Pagination
+              disabled={onSearching}
               className='pagination'
               current={currentPage}
               total={1000 || count}
