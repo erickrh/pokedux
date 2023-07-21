@@ -14,8 +14,8 @@ function App() {
   const currentPage = useSelector(state => state.data.currentPage);
   const count = useSelector(state => state.data.count);
   const searchValue = useSelector(state => state.data.searchValue);
-  const refreshTrigger = useSelector(state => state.data.refreshTrigger);
-  const [interruptor, setInterruptor] = React.useState(false);
+  const refreshTrigger = useSelector(state => state.ui.refreshTrigger);
+  const onSearching = useSelector(state => state.ui.onSearching);
 
   React.useEffect(() => {
     dispatch(fetchPokemonsWithDetails(currentPage));
@@ -31,7 +31,11 @@ function App() {
         <Logo className='Logo' />
       </Col>
       <Col span={12} offset={6}>
-        <Searcher searchValue={searchValue} interruptor={interruptor} setInterruptor={setInterruptor} />
+        <Searcher
+          searchValue={searchValue}
+          refreshTrigger={refreshTrigger}
+          onSearching={onSearching}
+        />
       </Col>
 
       {loading ? (

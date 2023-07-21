@@ -1,12 +1,16 @@
 import React from 'react';
 import { Input } from 'antd';
-import { setSearchValue, setPokemons, setRefreshTrigger } from '../slices/dataSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setSearchValue, setPokemons } from '../slices/dataSlice';
+import { setRefreshTrigger, setOnSearching } from '../slices/uiSlice';
 import { getPokemonBySearch } from '../usePokeAPI';
 
-function Searcher({ searchValue, interruptor, setInterruptor }) {
+function Searcher({
+  searchValue,
+  onSearching,
+  refreshTrigger
+}) {
   const dispatch = useDispatch();
-  const refreshTrigger = useSelector(state => state.data.refreshTrigger);
 
   const handleChangeValue = value => {
     dispatch(setSearchValue(value))
@@ -19,7 +23,7 @@ function Searcher({ searchValue, interruptor, setInterruptor }) {
       if (resPokemon !== undefined) {
         const result = [{...resPokemon}];
         dispatch(setPokemons(result));
-        setInterruptor(true);
+        dispatch(setOnSearching(true));
       } else {
         console.log('No found');
       }
@@ -29,9 +33,9 @@ function Searcher({ searchValue, interruptor, setInterruptor }) {
   }
 
   React.useEffect(()=> {
-    if (!searchValue && interruptor) {
+    if (!searchValue && onSearching) {
       dispatch(setRefreshTrigger(!refreshTrigger));
-      setInterruptor(false);
+      dispatch(setOnSearching(false));
     }
   }, [searchValue])
   
