@@ -15,8 +15,12 @@ function Searcher({ searchValue }) {
     if (searchValue.length > 0) {
       const pokemonToLowerCase = searchValue.toLowerCase();
       const resPokemon = await getPokemonBySearch(pokemonToLowerCase);
-      const result = [{...resPokemon}];
-      dispatch(setPokemons(result));
+      if (resPokemon !== undefined) {
+        const result = [{...resPokemon}];
+        dispatch(setPokemons(result));
+      } else {
+        console.log('No found');
+      }
     } else {
       console.log('Change placeholder');
     }
