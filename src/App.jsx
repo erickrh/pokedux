@@ -14,11 +14,12 @@ function App() {
   const currentPage = useSelector(state => state.data.currentPage);
   const count = useSelector(state => state.data.count);
   const searchValue = useSelector(state => state.data.searchValue);
-  // const refreshTrigger = useSelector(state => state.data.refreshTrigger);
+  const refreshTrigger = useSelector(state => state.data.refreshTrigger);
+  const [interruptor, setInterruptor] = React.useState(false);
 
   React.useEffect(() => {
     dispatch(fetchPokemonsWithDetails(currentPage));
-  }, [currentPage]);
+  }, [currentPage, refreshTrigger]);
 
   const handlePageChange = page => {
     dispatch(setCurrentPage(page));
@@ -30,7 +31,7 @@ function App() {
         <Logo className='Logo' />
       </Col>
       <Col span={12} offset={6}>
-        <Searcher searchValue={searchValue} />
+        <Searcher searchValue={searchValue} interruptor={interruptor} setInterruptor={setInterruptor} />
       </Col>
 
       {loading ? (

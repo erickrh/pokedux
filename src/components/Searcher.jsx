@@ -1,11 +1,12 @@
+import React from 'react';
 import { Input } from 'antd';
 import { setSearchValue, setPokemons, setRefreshTrigger } from '../slices/dataSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemonBySearch } from '../usePokeAPI';
 
-function Searcher({ searchValue }) {
+function Searcher({ searchValue, interruptor, setInterruptor }) {
   const dispatch = useDispatch();
-  // const refreshTrigger = useSelector(state => state.data.refreshTrigger);
+  const refreshTrigger = useSelector(state => state.data.refreshTrigger);
 
   const handleChangeValue = value => {
     dispatch(setSearchValue(value))
@@ -18,6 +19,7 @@ function Searcher({ searchValue }) {
       if (resPokemon !== undefined) {
         const result = [{...resPokemon}];
         dispatch(setPokemons(result));
+        setInterruptor(true);
       } else {
         console.log('No found');
       }
@@ -26,15 +28,17 @@ function Searcher({ searchValue }) {
     }
   }
 
-  // {!searchValue && (
-  //   dispatch(setRefreshTrigger(!refreshTrigger))
-  // )}
+  React.useEffect(()=> {
+    if (!searchValue && interruptor) {
+      dispatch(setRefreshTrigger(!refreshTrigger));
+      setInterruptor(false);
+    }
+  }, [searchValue])
   
   return (
     <Input.Search
       value={searchValue}
       placeholder='Search...'
-      // addonBefore
       enterButton
       onChange={e => handleChangeValue(e.target.value)}
       onPressEnter={fetchSearchPokemon}
