@@ -45,6 +45,7 @@
 @media (max-width: 480px) {
   .Logo {
     transform: scale(3.5);
+    margin-bottom: 3.2rem;
   }
   .App {
     margin: 2.5rem 0;
