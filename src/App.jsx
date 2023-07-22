@@ -54,7 +54,7 @@ function App() {
           {/* Items */}
           <PokemonList pokemons={pokemons} />
 
-          <Col offset={10}>
+          <div className="paginationContainer">
             <Pagination
               disabled={onSearching}
               className='pagination'
@@ -67,7 +67,7 @@ function App() {
               showLessItems
               responsive
             />
-          </Col>
+          </div>
         </>
       )}
     </div>
