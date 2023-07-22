@@ -6,6 +6,9 @@
   padding: 0 3rem 0rem;
 }
 
+
+/* MEDIA QUERIES */
+
 @media (max-width: 1000px) {
   .PokemonList {
     grid-template-columns: repeat(4, 1fr);
