@@ -1,8 +1,8 @@
 import React from 'react';
 import { Input } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSearchValue, setPokemons } from '../slices/dataSlice';
-import { setRefreshTrigger, setOnSearching } from '../slices/uiSlice';
+import { setRefreshTrigger, setOnSearching, setPlaceholder } from '../slices/uiSlice';
 import { getPokemonBySearch } from '../usePokeAPI';
 
 function Searcher({
@@ -11,6 +11,7 @@ function Searcher({
   refreshTrigger
 }) {
   const dispatch = useDispatch();
+  const placeholder = useSelector(state => state.ui.placeholder);
 
   const handleChangeValue = value => {
     dispatch(setSearchValue(value))
@@ -27,8 +28,9 @@ function Searcher({
       } else {
         console.log('No found');
       }
+      dispatch(setPlaceholder('Search...'));
     } else {
-      console.log('Change placeholder');
+      dispatch(setPlaceholder('Oops, you forgot to write your pokemon'));
     }
   }
 
@@ -42,7 +44,7 @@ function Searcher({
   return (
     <Input.Search
       value={searchValue}
-      placeholder='Search...'
+      placeholder={placeholder}
       enterButton
       onChange={e => handleChangeValue(e.target.value)}
       onPressEnter={fetchSearchPokemon}

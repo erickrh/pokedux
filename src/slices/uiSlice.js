@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   refreshTrigger: false,
   onSearching: false,
+  placeholder: 'Search...',
 }
 
 export const uiSlice = createSlice({
@@ -18,7 +19,10 @@ export const uiSlice = createSlice({
     },
     setOnSearching: (state, action) => {
       state.onSearching = action.payload;
-    }
+    },
+    setPlaceholder: (state, action) => {
+      state.placeholder = action.payload;
+    },
   },
 });
 
@@ -26,6 +30,7 @@ export const {
   setLoading,
   setRefreshTrigger,
   setOnSearching,
+  setPlaceholder,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;
