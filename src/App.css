@@ -52,4 +52,7 @@
   body {
     margin: 0;
   }
+  .pagination {
+    margin-bottom: 0;
+  }
 }
