@@ -3,8 +3,8 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Col, Row, Spin, Pagination } from 'antd';
 import { Searcher } from './components/Searcher';
 import { ReactComponent as Logo } from './assets/logo.svg';
-import { fetchPokemonsWithDetails, setCurrentPage } from './slices/dataSlice';
-import { setOnSearching } from './slices/uiSlice';
+import { fetchPokemonsWithDetails, goHome, setCurrentPage } from './slices/dataSlice';
+// import { setOnSearching } from './slices/uiSlice';
 import { PokemonList } from './components/PokemonList';
 import './App.css';
 
@@ -31,11 +31,7 @@ function App() {
       <Col span={6} offset={9}>
         <Logo
           className='Logo'
-          onClick={() => {
-            dispatch(setCurrentPage(1));
-            dispatch(setOnSearching(false));
-            dispatch(fetchPokemonsWithDetails(1));
-          }}
+          onClick={() => goHome(dispatch)}
         />
       </Col>
       <Col span={12} offset={6}>

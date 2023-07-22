@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getPokemon, getPokemonDetails } from '../usePokeAPI';
-import { setLoading } from './uiSlice';
+import { setLoading, setOnSearching } from './uiSlice';
 
 const initialState = {
   pokemons: [],
@@ -22,6 +22,22 @@ export const fetchPokemonsWithDetails = createAsyncThunk(
     dispatch(setLoading(false));
   }
 );
+
+// export const goHome = createAsyncThunk(
+//   'data/goHome',
+//   async (_, { dispatch }) => {
+//     dispatch(setCurrentPage(1));
+//     dispatch(setOnSearching(false));
+//     dispatch(fetchPokemonsWithDetails(1));
+//   }
+// );
+
+export const goHome = dispatch => {
+  dispatch(setCurrentPage(1));
+  dispatch(setOnSearching(false));
+  dispatch(fetchPokemonsWithDetails(1));
+  dispatch(setSearchValue(''));
+};
 
 const dataSlice = createSlice({
   name: 'data',
