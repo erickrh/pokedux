@@ -2,10 +2,10 @@ import React from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Col, Row, Spin, Pagination } from 'antd';
 import { Searcher } from './components/Searcher';
-import { ReactComponent as Logo } from './assets/logo.svg';
 import { fetchPokemonsWithDetails, goHome, setCurrentPage } from './slices/dataSlice';
-// import { setOnSearching } from './slices/uiSlice';
 import { PokemonList } from './components/PokemonList';
+import { ReactComponent as Logo } from './assets/logo.svg';
+import { setNoFound } from './slices/uiSlice';
 import './App.css';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
 
   React.useEffect(() => {
     dispatch(fetchPokemonsWithDetails(currentPage));
+    dispatch(setNoFound(false));
   }, [currentPage, refreshTrigger]);
 
   const handlePageChange = page => {

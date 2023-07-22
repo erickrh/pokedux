@@ -1,0 +1,9 @@
+.noFoundMsgContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.noFoundMsg {
+  color: #934ACC;
+  margin-top: 1rem;
+}
