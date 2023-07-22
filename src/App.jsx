@@ -30,12 +30,10 @@ function App() {
   return (
     <div className='App'>
       <Col span={6} offset={9}>
-        <div className="LogoContainer">
-          <Logo
-            className='Logo'
-            onClick={() => goHome(dispatch)}
-          />
-        </div>
+        <Logo
+          className='Logo'
+          onClick={() => goHome(dispatch)}
+        />
       </Col>
       
       <div className="searcherContainer">
