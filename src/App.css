@@ -1,14 +1,14 @@
 .App {
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .LogoContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .Logo {
-  /* margin-bottom: 3rem; */
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -52,8 +52,6 @@
 @media (max-width: 480px) {
   .Logo {
     transform: scale(1);
-    /* position: relative; */
-    /* z-index: 10; */
   }
   .App {
     margin: 2.5rem 0;
