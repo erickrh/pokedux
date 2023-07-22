@@ -35,13 +35,14 @@ function App() {
           onClick={() => goHome(dispatch)}
         />
       </Col>
-      <Col span={12} offset={6}>
+      
+      <div className="searcherContainer">
         <Searcher
           searchValue={searchValue}
           refreshTrigger={refreshTrigger}
           onSearching={onSearching}
         />
-      </Col>
+      </div>
 
       {loading ? (
         <Row justify="center" align="middle" style={{ height: '50vh' }}>

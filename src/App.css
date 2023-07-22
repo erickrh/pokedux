@@ -7,6 +7,11 @@
   cursor: pointer;
 }
 
+.searcherContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .paginationContainer {
   display: flex;
   justify-content: center;
@@ -40,5 +45,11 @@
 @media (max-width: 480px) {
   .Logo {
     transform: scale(3.5);
+  }
+  .App {
+    margin: 2.5rem 0;
+  }
+  body {
+    margin: 0;
   }
 }

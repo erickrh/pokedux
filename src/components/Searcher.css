@@ -1,3 +1,7 @@
+.Searcher {
+  width: 50vw;
+}
+
 .noFoundMsgContainer {
   display: flex;
   justify-content: center;
@@ -6,4 +10,19 @@
 .noFoundMsg {
   color: #934ACC;
   margin-top: 1rem;
+}
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 700px) {
+  .Searcher {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .Searcher {
+    width: 85vw;
+  }
 }

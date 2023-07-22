@@ -47,6 +47,7 @@ function Searcher({
   return (
     <>
       <Input.Search
+        className='Searcher'
         value={searchValue}
         placeholder={placeholder}
         enterButton
