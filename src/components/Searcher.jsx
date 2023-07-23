@@ -33,7 +33,7 @@ function Searcher({
       }
       dispatch(setPlaceholder('Search...'));
     } else {
-      dispatch(setPlaceholder('Oops, you forgot to write your pokemon'));
+      dispatch(setPlaceholder('Which pokemon, buddy?'));
     }
   }
 
