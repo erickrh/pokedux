@@ -6,6 +6,7 @@ import { fetchPokemonsWithDetails, goHome, setCurrentPage } from './slices/dataS
 import { PokemonList } from './components/PokemonList';
 import { ReactComponent as Logo } from './assets/logo.svg';
 import { setNoFound } from './slices/uiSlice';
+import { scrollTop } from './utils/scrollTop';
 import './App.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 
   const handlePageChange = page => {
     dispatch(setCurrentPage(page));
+    scrollTop();
   };
 
   return (
