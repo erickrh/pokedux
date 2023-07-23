@@ -36,13 +36,11 @@ function App() {
         />
       </div>
       
-      <div className="searcherContainer">
-        <Searcher
-          searchValue={searchValue}
-          refreshTrigger={refreshTrigger}
-          onSearching={onSearching}
-        />
-      </div>
+      <Searcher
+        searchValue={searchValue}
+        refreshTrigger={refreshTrigger}
+        onSearching={onSearching}
+      />
 
       {loading ? (
         <Row justify="center" align="middle" style={{ height: '50vh' }}>

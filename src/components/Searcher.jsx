@@ -46,15 +46,17 @@ function Searcher({
   
   return (
     <>
-      <Input.Search
-        className='Searcher'
-        value={searchValue}
-        placeholder={placeholder}
-        enterButton
-        onChange={e => handleChangeValue(e.target.value)}
-        onPressEnter={fetchSearchPokemon}
-        onSearch={fetchSearchPokemon}
-      />
+      <div className="searcherContainer">
+        <Input.Search
+          className='Searcher'
+          value={searchValue}
+          placeholder={placeholder}
+          enterButton
+          onChange={e => handleChangeValue(e.target.value)}
+          onPressEnter={fetchSearchPokemon}
+          onSearch={fetchSearchPokemon}
+        />
+      </div>
 
       {noFound && (
         <div className="noFoundMsgContainer">

@@ -19,11 +19,6 @@ body {
   cursor: pointer;
 }
 
-.searcherContainer {
-  display: flex;
-  justify-content: center;
-}
-
 .paginationContainer {
   display: flex;
   justify-content: center;
